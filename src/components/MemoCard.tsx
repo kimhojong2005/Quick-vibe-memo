@@ -1,11 +1,6 @@
 import { useState } from 'react';
+import type { Memo } from '../types';
 
-// The Memo type can be imported from App.tsx in a later refactor.
-type Memo = {
-  id: string;
-  text: string;
-  createdAt: Date;
-};
 
 type MemoCardProps = {
   memo: Memo;

@@ -1,12 +1,7 @@
 import { useState, useEffect } from 'react';
 import MemoCard from './components/MemoCard';
+import type { Memo } from './types';
 
-// Define the structure of a single memo
-type Memo = {
-  id: string;
-  text: string;
-  createdAt: Date;
-};
 
 function App() {
   // Lazily initialize state from LocalStorage

@@ -12,6 +12,7 @@ function App() {
       return JSON.parse(savedMemos).map((memo: Memo) => ({
         ...memo,
         createdAt: new Date(memo.createdAt),
+        font: memo.font || 'font-sans', // Ensure old memos get a default font
       }));
     } else {
       return [];
@@ -45,6 +46,7 @@ function App() {
       id: crypto.randomUUID(),
       text: newMemoText,
       createdAt: new Date(),
+      font: 'font-sans', // Default font
     };
 
     setMemos([newMemo, ...memos]);

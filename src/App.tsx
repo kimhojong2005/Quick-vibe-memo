@@ -49,6 +49,10 @@ function App() {
     ));
   };
 
+  const handleClearAll = () => {
+    setMemos([]);
+  };
+
 
   return (
     <div className="bg-gray-900 min-h-screen text-white p-4 font-sans">
@@ -74,7 +78,18 @@ function App() {
           </button>
         </form>
 
-        {/* Memo list */}
+        {/* Clear all button and Memo list */}
+        {memos.length > 0 && (
+          <div className="mb-4 text-right">
+            <button 
+              onClick={handleClearAll}
+              className="text-sm text-red-500 hover:text-red-400 font-semibold transition-colors"
+            >
+              Clear All Memos
+            </button>
+          </div>
+        )}
+
         {memos.length === 0 ? (
           <div className="text-center text-gray-500 mt-20">
             <p>No memos yet. Add one!</p>

@@ -65,9 +65,9 @@ function App() {
     setMemos(memos.filter(memo => memo.id !== id));
   };
 
-  const handleUpdateMemo = (id: string, newText: string) => {
+  const handleUpdateMemo = (id: string, newText: string, newFont: string) => {
     setMemos(memos.map(memo => 
-      memo.id === id ? { ...memo, text: newText } : memo
+      memo.id === id ? { ...memo, text: newText, font: newFont } : memo
     ));
   };
 

@@ -2,24 +2,29 @@ import { useState } from 'react';
 import type { Memo } from '../types';
 import { motion } from 'framer-motion';
 
+const availableFonts = [
+  { name: 'Sans', class: 'font-sans' },
+  { name: 'Serif', class: 'font-serif' },
+  { name: 'Mono', class: 'font-mono' },
+];
 
 type MemoCardProps = {
   memo: Memo;
   onDelete: (id: string) => void;
-  onUpdate: (id: string, newText: string) => void;
+  onUpdate: (id: string, newText: string, newFont: string) => void;
 };
 
 function MemoCard({ memo, onDelete, onUpdate }: MemoCardProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState(memo.text);
+  const [editedFont, setEditedFont] = useState(memo.font);
 
   const handleSave = () => {
-    // If text is empty after edit, delete the memo
     if (editedText.trim() === '') {
       onDelete(memo.id);
       return;
     }
-    onUpdate(memo.id, editedText);
+    onUpdate(memo.id, editedText, editedFont);
     setIsEditing(false);
   };
 
@@ -29,10 +34,22 @@ function MemoCard({ memo, onDelete, onUpdate }: MemoCardProps) {
         <textarea
           value={editedText}
           onChange={(e) => setEditedText(e.target.value)}
-          className={`w-full bg-gray-800 border-2 border-gray-600 rounded-lg p-2 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500 transition flex-grow ${memo.font}`}
+          className={`w-full bg-gray-800 border-2 border-gray-600 rounded-lg p-2 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500 transition flex-grow ${editedFont}`}
           rows={5}
         />
-        <div className="mt-2 flex justify-end gap-2">
+        <div className="flex justify-center gap-2 mt-3">
+          {availableFonts.map(font => (
+            <button
+              type="button"
+              key={font.class}
+              onClick={() => setEditedFont(font.class)}
+              className={`px-3 py-1 text-xs rounded-md transition-colors ${editedFont === font.class ? 'bg-purple-600 text-white' : 'bg-gray-800 text-gray-300 hover:bg-gray-600'} ${font.class}`}
+            >
+              {font.name}
+            </button>
+          ))}
+        </div>
+        <div className="mt-3 flex justify-end gap-2 border-t border-gray-600 pt-2">
            <button 
             onClick={() => setIsEditing(false)}
             className="text-xs font-semibold text-gray-400 hover:text-white transition-colors"

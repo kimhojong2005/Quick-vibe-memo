@@ -92,9 +92,23 @@ function App() {
           </button>
         </form>
 
-        {/* Clear all button and Memo list */}
+        {/* Controls: Clear all and Sort */}
         {memos.length > 0 && (
-          <div className="mb-4 text-right">
+          <div className="flex justify-between items-center mb-4">
+            <div className="flex gap-2">
+              <button 
+                onClick={() => setSortOrder('newest')}
+                className={`text-sm font-semibold px-3 py-1 rounded-md transition-colors ${sortOrder === 'newest' ? 'bg-purple-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
+              >
+                Newest First
+              </button>
+              <button 
+                onClick={() => setSortOrder('oldest')}
+                className={`text-sm font-semibold px-3 py-1 rounded-md transition-colors ${sortOrder === 'oldest' ? 'bg-purple-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
+              >
+                Oldest First
+              </button>
+            </div>
             <button 
               onClick={handleClearAll}
               className="text-sm text-red-500 hover:text-red-400 font-semibold transition-colors"

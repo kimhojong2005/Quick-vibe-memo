@@ -49,13 +49,13 @@ function MemoCard({ memo, onDelete, onUpdate, availableFonts }: MemoCardProps) {
             onClick={() => setIsEditing(false)}
             className="text-xs font-semibold text-gray-400 hover:text-white transition-colors"
           >
-            Cancel
+            취소
           </button>
           <button 
             onClick={handleSave}
             className="text-xs font-semibold text-green-500 hover:text-green-400 transition-colors"
           >
-            Save
+            저장
           </button>
         </div>
       </motion.div>
@@ -81,13 +81,13 @@ function MemoCard({ memo, onDelete, onUpdate, availableFonts }: MemoCardProps) {
             onClick={() => setIsEditing(true)}
             className="text-xs font-semibold text-yellow-500 hover:text-yellow-400 transition-colors"
           >
-            Edit
+            수정
           </button>
           <button 
             onClick={() => onDelete(memo.id)}
             className="text-xs font-semibold text-red-500 hover:text-red-400 transition-colors"
           >
-            Delete
+            삭제
           </button>
         </div>
       </div>

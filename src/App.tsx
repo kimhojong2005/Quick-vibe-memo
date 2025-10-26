@@ -72,7 +72,7 @@ function App() {
   };
 
   const handleClearAll = () => {
-    if (window.confirm('Are you sure you want to delete all memos? This action cannot be undone.')) {
+    if (window.confirm('정말로 모든 메모를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.')) {
       setMemos([]);
     }
   };
@@ -82,7 +82,7 @@ function App() {
     <div className="bg-gray-900 min-h-screen text-white p-4 font-sans">
       <header className="text-center my-8">
         <h1 className="text-5xl font-extrabold tracking-tight">Quick Vibe Memo</h1>
-        <p className="text-gray-400 mt-2">A minimalist memo pad for your vibes.</p>
+        <p className="text-gray-400 mt-2">당신의 감성을 담는 미니멀 메모장</p>
       </header>
       <main className="max-w-3xl mx-auto">
         {/* Memo input form */}
@@ -90,7 +90,7 @@ function App() {
           <textarea
             value={newMemoText}
             onChange={(e) => setNewMemoText(e.target.value)}
-            placeholder="What's on your mind?"
+            placeholder="무슨 생각을 하고 있나요?"
             className={`w-full bg-gray-800 border-2 border-gray-700 rounded-lg p-4 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition ${currentFont}`}
             rows={4}
           />
@@ -112,7 +112,7 @@ function App() {
             type="submit"
             className="w-full mt-4 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-lg transition-colors"
           >
-            Add Vibe
+            감성 추가
           </button>
         </form>
 
@@ -124,27 +124,27 @@ function App() {
                 onClick={() => setSortOrder('newest')}
                 className={`text-sm font-semibold px-3 py-1 rounded-md transition-colors ${sortOrder === 'newest' ? 'bg-purple-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
               >
-                Newest First
+                최신순
               </button>
               <button 
                 onClick={() => setSortOrder('oldest')}
                 className={`text-sm font-semibold px-3 py-1 rounded-md transition-colors ${sortOrder === 'oldest' ? 'bg-purple-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`}
               >
-                Oldest First
+                오래된순
               </button>
             </div>
             <button 
               onClick={handleClearAll}
               className="text-sm text-red-500 hover:text-red-400 font-semibold transition-colors"
             >
-              Clear All Memos
+              모두 지우기
             </button>
           </div>
         )}
 
         {memos.length === 0 ? (
           <div className="text-center text-gray-500 mt-20">
-            <p>No memos yet. Add one!</p>
+            <p>아직 메모가 없어요. 하나 추가해보세요!</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">

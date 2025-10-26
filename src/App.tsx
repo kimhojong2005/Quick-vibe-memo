@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import MemoCard from './components/MemoCard';
 import type { Memo } from './types';
+import { AnimatePresence } from 'framer-motion';
 
 
 function App() {
@@ -98,14 +99,16 @@ function App() {
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {memos.map((memo) => (
-              <MemoCard 
-                key={memo.id} 
-                memo={memo} 
-                onDelete={handleDeleteMemo}
-                onUpdate={handleUpdateMemo}
-              />
-            ))}
+            <AnimatePresence>
+              {memos.map((memo) => (
+                <MemoCard 
+                  key={memo.id} 
+                  memo={memo} 
+                  onDelete={handleDeleteMemo}
+                  onUpdate={handleUpdateMemo}
+                />
+              ))}
+            </AnimatePresence>
           </div>
         )}
       </main>

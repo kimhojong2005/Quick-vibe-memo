@@ -29,7 +29,7 @@ function MemoCard({ memo, onDelete, onUpdate }: MemoCardProps) {
         <textarea
           value={editedText}
           onChange={(e) => setEditedText(e.target.value)}
-          className="w-full bg-gray-800 border-2 border-gray-600 rounded-lg p-2 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500 transition flex-grow"
+          className={`w-full bg-gray-800 border-2 border-gray-600 rounded-lg p-2 text-white focus:outline-none focus:ring-2 focus:ring-yellow-500 transition flex-grow ${memo.font}`}
           rows={5}
         />
         <div className="mt-2 flex justify-end gap-2">
@@ -59,7 +59,7 @@ function MemoCard({ memo, onDelete, onUpdate }: MemoCardProps) {
       transition={{ duration: 0.3, ease: "easeOut" }}
       className="bg-gray-800 rounded-lg p-4 shadow-lg transition-shadow hover:shadow-purple-500/20 flex flex-col justify-between h-full"
     >
-      <p className="text-gray-200 whitespace-pre-wrap mb-4 flex-grow">{memo.text}</p>
+      <p className={`text-gray-200 whitespace-pre-wrap mb-4 flex-grow ${memo.font}`}>{memo.text}</p>
       <div className="border-t border-gray-700 pt-2 flex justify-between items-center">
         <span className="text-xs text-gray-500">
           {memo.createdAt.toLocaleString()}

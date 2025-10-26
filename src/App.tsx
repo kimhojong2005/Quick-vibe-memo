@@ -50,7 +50,9 @@ function App() {
   };
 
   const handleClearAll = () => {
-    setMemos([]);
+    if (window.confirm('Are you sure you want to delete all memos? This action cannot be undone.')) {
+      setMemos([]);
+    }
   };
 
 

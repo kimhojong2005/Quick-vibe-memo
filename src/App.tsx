@@ -22,6 +22,14 @@ function App() {
   // State for the new memo input text
   const [newMemoText, setNewMemoText] = useState('');
   const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest');
+  const [currentFont, setCurrentFont] = useState('font-sans');
+
+  const availableFonts = [
+    { name: 'Sans', class: 'font-sans' },
+    { name: 'Serif', class: 'font-serif' },
+    { name: 'Mono', class: 'font-mono' },
+  ];
+
 
   // Effect to save memos to LocalStorage whenever they change
   useEffect(() => {
@@ -46,7 +54,7 @@ function App() {
       id: crypto.randomUUID(),
       text: newMemoText,
       createdAt: new Date(),
-      font: 'font-sans', // Default font
+      font: currentFont, // Use the currently selected font
     };
 
     setMemos([newMemo, ...memos]);
@@ -83,9 +91,23 @@ function App() {
             value={newMemoText}
             onChange={(e) => setNewMemoText(e.target.value)}
             placeholder="What's on your mind?"
-            className="w-full bg-gray-800 border-2 border-gray-700 rounded-lg p-4 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
+            className={`w-full bg-gray-800 border-2 border-gray-700 rounded-lg p-4 text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition ${currentFont}`}
             rows={4}
           />
+
+          <div className="flex justify-center gap-3 mt-4">
+            {availableFonts.map(font => (
+              <button
+                type="button" // Prevents form submission
+                key={font.class}
+                onClick={() => setCurrentFont(font.class)}
+                className={`px-4 py-2 text-sm rounded-md transition-colors ${currentFont === font.class ? 'bg-purple-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'} ${font.class}`}
+              >
+                {font.name}
+              </button>
+            ))}
+          </div>
+
           <button
             type="submit"
             className="w-full mt-4 bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-lg transition-colors"

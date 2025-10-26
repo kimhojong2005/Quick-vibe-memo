@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import MemoCard from './components/MemoCard';
 import type { Memo } from './types';
 import { AnimatePresence } from 'framer-motion';
@@ -20,11 +20,22 @@ function App() {
 
   // State for the new memo input text
   const [newMemoText, setNewMemoText] = useState('');
+  const [sortOrder, setSortOrder] = useState<'newest' | 'oldest'>('newest');
 
   // Effect to save memos to LocalStorage whenever they change
   useEffect(() => {
     localStorage.setItem('memos', JSON.stringify(memos));
   }, [memos]);
+
+  const sortedMemos = useMemo(() => {
+    return [...memos].sort((a, b) => {
+      if (sortOrder === 'newest') {
+        return b.createdAt.getTime() - a.createdAt.getTime();
+      } else {
+        return a.createdAt.getTime() - b.createdAt.getTime();
+      }
+    });
+  }, [memos, sortOrder]);
 
   const handleAddMemo = (e: React.FormEvent) => {
     e.preventDefault();
@@ -100,7 +111,7 @@ function App() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             <AnimatePresence>
-              {memos.map((memo) => (
+              {sortedMemos.map((memo) => (
                 <MemoCard 
                   key={memo.id} 
                   memo={memo} 

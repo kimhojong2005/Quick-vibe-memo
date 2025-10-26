@@ -2,19 +2,14 @@ import { useState } from 'react';
 import type { Memo } from '../types';
 import { motion } from 'framer-motion';
 
-const availableFonts = [
-  { name: 'Sans', class: 'font-sans' },
-  { name: 'Serif', class: 'font-serif' },
-  { name: 'Mono', class: 'font-mono' },
-];
-
 type MemoCardProps = {
   memo: Memo;
   onDelete: (id: string) => void;
   onUpdate: (id: string, newText: string, newFont: string) => void;
+  availableFonts: { name: string; class: string }[];
 };
 
-function MemoCard({ memo, onDelete, onUpdate }: MemoCardProps) {
+function MemoCard({ memo, onDelete, onUpdate, availableFonts }: MemoCardProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState(memo.text);
   const [editedFont, setEditedFont] = useState(memo.font);

@@ -155,6 +155,7 @@ function App() {
                   memo={memo} 
                   onDelete={handleDeleteMemo}
                   onUpdate={handleUpdateMemo}
+                  availableFonts={availableFonts}
                 />
               ))}
             </AnimatePresence>
